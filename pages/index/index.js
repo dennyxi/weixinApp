@@ -24,7 +24,8 @@ Page({
   data: {
     nowTemp:"12",
     nowWeather:"sun",
-    nowWeatherBackground:""
+    nowWeatherBackground:"",
+    hourweather:[]
   },
 
   /**
@@ -65,6 +66,23 @@ Page({
             backgroundColor: weatherColorMap[weather]
   
           })
+          //set hourweather
+          console.log(result)
+          let nowhour = new Date().getHours()
+          let hourweather = []
+          let forecast = result.forecast
+          for (let i = 0 ;i<24;i+=3){
+            hourweather.push({
+              time:(i+nowhour)%24,
+              icon:'/images/'+forecast[i/3].weather+'-icon.png',
+              temp:forecast[i/3].temp
+            })
+          }
+          hourweather[0].time ='now'
+          this.setData({
+            hourweather:hourweather
+          })
+          
         },
         complete:()=>{
           callback && callback()

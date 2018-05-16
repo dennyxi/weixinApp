@@ -3,3 +3,16 @@
   <view class='weather'>{{ nowWeather }}</view>
   <image class = 'weather-bg'src='{{ nowWeatherBackground }}'></image>
 </view>
+<view class='timetips'>
+  <image class="timeicon" src="/images/time-icon.png"></image>
+  <view class='timeicon-txt'>未来24小时天气预测</view>
+</view>
+<scroll-view scroll-x>
+  <view class='list'>
+    <view class='item' wx:for = "{{hourweather}}">
+      <view class= 'time'> {{item.time}}</view>
+      <image class= 'timeweather' src='{{item.icon}}'></image>
+      <view class= 'timetemp'>{{item.temp}}</view>
+    </view>
+  </view>
+</scroll-view>
